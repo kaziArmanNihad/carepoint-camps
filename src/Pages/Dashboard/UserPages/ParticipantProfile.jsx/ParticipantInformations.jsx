@@ -12,7 +12,7 @@ const ParticipantInformations = () => {
   const [participant] = UseParticipant();
 
   const participantProfile = participant.filter(
-    (participant) => participant.userEmail === user.email
+    (participant) => participant.userEmail === user.email,
   );
 
   // checking the user
@@ -75,9 +75,7 @@ const ParticipantInformations = () => {
                     <Link
                       to={`/dashboard/participantProfileUpdate/${participant._id}`}
                     >
-                      <UsePrimaryBtn isUpdate>
-                        Update
-                      </UsePrimaryBtn>
+                      <UsePrimaryBtn isUpdate>Update</UsePrimaryBtn>
                     </Link>
                   </td>
                 </tr>

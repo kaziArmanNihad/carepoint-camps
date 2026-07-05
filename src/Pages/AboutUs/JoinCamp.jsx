@@ -58,7 +58,7 @@ function JoinCamp() {
               </svg>
             </div>
           </div>
-          
+
           {/* right card */}
           <div className="bg-white rounded-2xl shadow-xl p-8 flex items-center justify-between overflow-hidden">
             <div className="space-y-4">

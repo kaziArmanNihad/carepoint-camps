@@ -1,5 +1,4 @@
-import "./CSS/UseShineBtn.css";
-
+// import "./CSS/UseShineBtn.css";
 
 const UseShineBtn = ({ children, className }) => {
   return (

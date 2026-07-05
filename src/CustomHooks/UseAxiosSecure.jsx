@@ -18,7 +18,7 @@ const UseAxiosSecure = () => {
     },
     function (error) {
       return Promise.reject(error);
-    }
+    },
   );
 
   axiosSecure.interceptors.response.use(
@@ -33,7 +33,7 @@ const UseAxiosSecure = () => {
         navigate("/login");
       }
       return Promise.reject(error);
-    }
+    },
   );
 
   return axiosSecure;

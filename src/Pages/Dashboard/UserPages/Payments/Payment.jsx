@@ -15,7 +15,7 @@ const Payment = () => {
 
   // finding the price
   const participantInfo = participant.find(
-    (participant) => participant._id === id
+    (participant) => participant._id === id,
   );
 
   const campName = participantInfo.name;
@@ -34,7 +34,6 @@ const Payment = () => {
             <CheckoutForm price={price} campName={campName} id={id} />
           </Elements>
         </div>
-       
       </div>
     </div>
   );

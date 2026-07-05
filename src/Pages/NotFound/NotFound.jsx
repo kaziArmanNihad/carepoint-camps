@@ -26,9 +26,7 @@ const NotFound = () => {
 
         {/* Back to Homepage Button */}
         <Link to="/">
-          <UsePrimaryBtn isCancel={true}>
-            Back to Homepage
-          </UsePrimaryBtn>
+          <UsePrimaryBtn isCancel={true}>Back to Homepage</UsePrimaryBtn>
         </Link>
       </div>
     </section>

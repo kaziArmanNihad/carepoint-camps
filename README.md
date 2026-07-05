@@ -53,13 +53,11 @@ cd carepoint-camps
 
 2. Install dependencies
 
-
 ```bash
 npm install
 ```
 
 3. Start the development server
-
 
 ```bash
 npm run dev
@@ -87,13 +85,11 @@ Contribution
 
 Contributions are welcome! Please fork the repo and submit a pull request.
 
-
 ---
 
 License
 
 This project is open source and available under the MIT License.
-
 
 ---
 

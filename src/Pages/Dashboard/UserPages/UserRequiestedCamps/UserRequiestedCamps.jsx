@@ -16,7 +16,7 @@ const UserRequiestedCamps = () => {
   const axiosPublic = UseAxios();
 
   const participantRequiests = participant.filter(
-    (participant) => participant.userEmail === user.email
+    (participant) => participant.userEmail === user.email,
   );
 
   const handleDelete = (id) => {
@@ -116,9 +116,7 @@ const UserRequiestedCamps = () => {
                   <td className="px-4 py-2">
                     {participant.paymentStatus === "pay" ? (
                       <Link to={`/dashboard/payment/${participant._id}`}>
-                        <UsePrimaryBtn blackBorder>
-                          Pay
-                        </UsePrimaryBtn>
+                        <UsePrimaryBtn blackBorder>Pay</UsePrimaryBtn>
                       </Link>
                     ) : (
                       <UsePrimaryBtn disabled>Paid</UsePrimaryBtn>

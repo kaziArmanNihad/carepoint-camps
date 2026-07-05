@@ -20,7 +20,7 @@ const AvailableCamps = () => {
         setFilteredCamps([]);
       } else {
         const results = camp.filter((c) =>
-          c.name.toLowerCase().includes(searchTerm.toLowerCase())
+          c.name.toLowerCase().includes(searchTerm.toLowerCase()),
         );
         setFilteredCamps(results);
       }
@@ -110,7 +110,9 @@ const AvailableCamps = () => {
                   <h2 className="card-title text-CPC-ocean text-lg md:text-lg font-bold">
                     {camp.name}
                   </h2>
-                  <p className="text-black text-sm md:text-base">{camp.location}</p>
+                  <p className="text-black text-sm md:text-base">
+                    {camp.location}
+                  </p>
                   <div className="card-actions justify-end mt-3">
                     <Link to={`/campDetails/${camp._id}`}>
                       <UsePrimaryBtn>More Details</UsePrimaryBtn>

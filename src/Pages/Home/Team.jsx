@@ -158,7 +158,7 @@ export default function Team() {
             className="!px-4 sm:!px-8"
             onSlideChange={(swiper) =>
               setSelectedMemberId(
-                teamMembers[swiper.realIndex % teamMembers.length].id
+                teamMembers[swiper.realIndex % teamMembers.length].id,
               )
             }
           >

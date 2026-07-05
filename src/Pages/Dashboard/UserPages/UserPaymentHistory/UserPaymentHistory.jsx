@@ -11,7 +11,7 @@ const UserPaymentHistory = () => {
 
   // filtering data
   const filteredpaymentData = payment.filter(
-    (payment) => payment.email === user.email
+    (payment) => payment.email === user.email,
   );
 
   if (filteredpaymentData.length === 0) {

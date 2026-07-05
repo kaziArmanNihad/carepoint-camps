@@ -18,9 +18,7 @@ const PrivateRoute = ({ children }) => {
         <p className="text-white w-80 h-80 loading loading-infinity loading-xl"></p>
         <h1 className="text-2xl text-white">Loading Data...</h1>
         <Link to="/">
-          <UsePrimaryBtn isCancel={true}>
-            Back to Home Page
-          </UsePrimaryBtn>
+          <UsePrimaryBtn isCancel={true}>Back to Home Page</UsePrimaryBtn>
         </Link>
       </div>
     );

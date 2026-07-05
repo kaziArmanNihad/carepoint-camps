@@ -127,8 +127,7 @@ const Testimonials = () => {
         {/* Left: Text */}
         <div className="w-full lg:w-1/2 p-2 space-y-4 text-left">
           <h2 className="text-center text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 tracking-tight lg:text-left">
-            Voices from Our{" "}
-            <span className="text-CPC-ocean">Community</span>
+            Voices from Our <span className="text-CPC-ocean">Community</span>
           </h2>
           <p className="text-base sm:text-lg text-slate-600">
             Hear what people are saying about our medical camps and how we’ve

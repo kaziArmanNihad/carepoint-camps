@@ -49,7 +49,8 @@ const DashboardInterface = () => {
               ) : (
                 <div className="user-section mt-4 space-y-3">
                   <h2 className="text-xl">
-                    Welcome to <span className='text-CPC-ocean'>Carepoint Camps!</span>
+                    Welcome to{" "}
+                    <span className="text-CPC-ocean">Carepoint Camps!</span>
                   </h2>
                   <p className="text-sm md:text-base">
                     We’re glad to have you here. At Carepoint Camps, you have

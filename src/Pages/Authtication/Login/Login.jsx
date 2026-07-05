@@ -198,7 +198,9 @@ const Login = () => {
           <div>
             <div className="flex items-center">
               <HeartHandshake className="h-10 w-10 mr-2 text-white" />
-              <h1 className="font-extrabold md:text-2xl lg:text-3xl xl:text-4xl">Carepoint Camp</h1>
+              <h1 className="font-extrabold md:text-2xl lg:text-3xl xl:text-4xl">
+                Carepoint Camp
+              </h1>
             </div>
             <div className="mt-16 sm:mt-24">
               <h1 className="text-2xl lg:text-3xl font-extrabold leading-tight">
