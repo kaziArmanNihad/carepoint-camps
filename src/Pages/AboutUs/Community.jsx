@@ -1,29 +1,4 @@
-import {
-  Users,
-  Activity,
-  ClipboardCheck,
-  BookHeart,
-  HeartPulse,
-} from "lucide-react";
-
-// process timeline
-const ProcessStep = ({ icon, title, isLast = false }) => (
-  <div className="relative flex-1">
-    <div className="flex flex-col items-center text-center">
-      <div className="flex items-center justify-center w-16 h-16 rounded-full bg-purple-100 text-CPC-ocean z-10">
-        {icon}
-      </div>
-      <h4 className="mt-4 mb-2 font-bold text-gray-800 text-sm sm:text-base md:text-lg">
-        {title}
-      </h4>
-    </div>
-
-    {/* Connecting line */}
-    {!isLast && (
-      <div className="absolute left-1/2 top-8 h-0.5 w-full bg-CPC-ocean hidden md:block" />
-    )}
-  </div>
-);
+import { Users, MapPin, Stethoscope, HandHeart } from "lucide-react";
 
 // gallery images
 const ImageCard = ({ imageUrl, title }) => (
@@ -45,28 +20,28 @@ const ImageCard = ({ imageUrl, title }) => (
 );
 
 export default function Community() {
-  // timeline data
-  const processSteps = [
+  // impact stat used in the mission panel
+  const StatCard = ({ icon, value, label }) => (
+    <div className="rounded-2xl bg-white border border-[#0A3B3A]/8 p-5">
+      <div className="w-9 h-9 rounded-full bg-[#E1F5EE] text-[#0F6E56] flex items-center justify-center mb-3">
+        {icon}
+      </div>
+      <p className="text-2xl font-bold text-[#0A3B3A] leading-none mb-1">
+        {value}
+      </p>
+      <p className="text-xs text-[#5b6b66]">{label}</p>
+    </div>
+  );
+
+  const impactStats = [
+    { icon: <MapPin size={18} />, value: "120+", label: "Camps hosted" },
     {
-      icon: <Users size={24} />,
-      title: "Community Outreach",
+      icon: <Stethoscope size={18} />,
+      value: "40k+",
+      label: "Patients served",
     },
-    {
-      icon: <Activity size={24} />,
-      title: "Health Screening",
-    },
-    {
-      icon: <HeartPulse size={24} />,
-      title: "Specialist Care",
-    },
-    {
-      icon: <ClipboardCheck size={24} />,
-      title: "Follow-up Support",
-    },
-    {
-      icon: <BookHeart size={24} />,
-      title: "Health Education",
-    },
+    { icon: <HandHeart size={18} />, value: "2.3k", label: "Volunteers" },
+    { icon: <Users size={18} />, value: "18", label: "Cities reached" },
   ];
 
   // gallery images
@@ -105,8 +80,6 @@ export default function Community() {
               Dedicated to{" "}
               <span className="text-CPC-ocean">Community Wellness</span>
             </h2>
-          </div>
-          <div>
             <p className="mb-3 sm:mb-4 text-gray-500 text-sm sm:text-base">
               Our mission is to bring high-quality healthcare directly to the
               communities that need it most. We believe that everyone deserves
@@ -118,25 +91,16 @@ export default function Community() {
               consultations, health screenings, and educational resources to
               empower individuals and build a healthier future for all.
             </p>
-            <button className="rounded-lg bg-CPC-ocean px-6 sm:px-8 py-2.5 sm:py-3 font-semibold text-white text-sm sm:text-base transition-colors hover:bg-purple-700">
+            <button className="rounded-lg bg-CPC-ocean px-6 sm:px-8 py-2.5 sm:py-3 font-semibold text-white text-sm sm:text-base transition-colors hover:bg-CPC-sky hover:text-black">
               Learn More
             </button>
           </div>
-        </div>
-
-        {/* Process Section */}
-        <div className="text-center">
-          <h2 className="mb-8 sm:mb-12 text-2xl sm:text-3xl font-bold text-black">
-            Our Carepoint Camp <span className="text-CPC-ocean">Process</span>
-          </h2>
-          <div className="relative flex flex-col items-stretch space-y-8 md:flex-row md:space-y-0 md:space-x-4 bg-sky-200 p-5 rounded-2xl">
-            {processSteps.map((step, index) => (
-              <ProcessStep
-                key={index}
-                {...step}
-                isLast={index === processSteps.length - 1}
-              />
-            ))}
+          <div>
+            <div className="grid grid-cols-2 gap-4">
+              {impactStats.map((stat) => (
+                <StatCard key={stat.label} {...stat} />
+              ))}
+            </div>
           </div>
         </div>
 
