@@ -1,241 +1,5 @@
-// import { useEffect, useState } from "react";
-// import { NavLink, Outlet } from "react-router-dom";
-// import UseAdmin from "../../CustomHooks/UseAdmin";
-// import {
-//   MdAddBusiness,
-//   MdAnalytics,
-//   MdDashboard,
-//   MdHomeWork,
-// } from "react-icons/md";
-// import { MdOutlineMedicalInformation } from "react-icons/md";
-// import { GiCampingTent } from "react-icons/gi";
-// import { FaMoneyCheckAlt, FaUsers, FaUserShield } from "react-icons/fa";
-// import { IoMdHome } from "react-icons/io";
-// import { FaHouseMedical } from "react-icons/fa6";
-// import { BsPersonWorkspace } from "react-icons/bs";
-// import {
-//   disableBodyScroll,
-//   enableBodyScroll,
-//   clearAllBodyScrollLocks,
-// } from "body-scroll-lock";
-
-// const Dashboard = () => {
-//   const [isAdmin] = UseAdmin();
-//   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
-//   const toggleSidebar = () => setIsSidebarOpen((preValue) => !preValue);
-
-//   // Close sidebar only on small screens
-//   const handleNavClick = () => {
-//     if (window.innerWidth < 768) setIsSidebarOpen(false);
-//   };
-
-//   // screen lock when side bar is open
-//   useEffect(() => {
-//     if (isSidebarOpen) {
-//       disableBodyScroll(document.body);
-//     } else {
-//       enableBodyScroll(document.body);
-//     }
-
-//     return () => clearAllBodyScrollLocks(document.body);
-//   }, [isSidebarOpen]);
-
-//   return (
-//     <div className="flex flex-col md:flex-row min-h-screen font-poppins">
-//       {/* Toggle Button for Small Screens */}
-//       <div className="text-white bg-CPC-ocean flex justify-start items-center gap-4 md:hidden">
-//         <div
-//           tabIndex={0}
-//           role="button"
-//           onClick={toggleSidebar}
-//           className="btn btn-ghost"
-//         >
-//           <svg
-//             xmlns="http://www.w3.org/2000/svg"
-//             className="h-5 w-5"
-//             fill="none"
-//             viewBox="0 0 24 24"
-//             stroke="currentColor"
-//           >
-//             <path
-//               strokeLinecap="round"
-//               strokeLinejoin="round"
-//               strokeWidth="2"
-//               d="M4 6h16M4 12h8m-8 6h16"
-//             />
-//           </svg>
-//         </div>
-//         <h1>Carepoint Camp</h1>
-//       </div>
-
-//       {/* Sidebar */}
-//       <div
-//         className={`${
-//           isSidebarOpen ? "block" : "hidden"
-//         } md:block w-full md:w-64 min-h-screen bg-CPC-ocean text-white md:relative absolute z-10`}
-//       >
-//         <div className="text-white bg-CPC-ocean flex justify-start items-center gap-4 md:hidden">
-//           <div
-//             tabIndex={0}
-//             role="button"
-//             onClick={toggleSidebar}
-//             className="btn btn-ghost"
-//           >
-//             <svg
-//               xmlns="http://www.w3.org/2000/svg"
-//               className="h-5 w-5"
-//               fill="none"
-//               viewBox="0 0 24 24"
-//               stroke="currentColor"
-//             >
-//               <path
-//                 strokeLinecap="round"
-//                 strokeLinejoin="round"
-//                 strokeWidth="2"
-//                 d="M4 6h16M4 12h8m-8 6h16"
-//               />
-//             </svg>
-//           </div>
-//           <h1>Carepoint Camp</h1>
-//         </div>
-//         <ul className="menu p-4 space-y-2">
-//           {/* admin routes */}
-//           {isAdmin ? (
-//             <>
-//               <li onClick={handleNavClick}>
-//                 <NavLink
-//                   to="/dashboard/organizerProfile"
-//                   className="flex items-center p-2 rounded-xl"
-//                 >
-//                   <FaUserShield className="w-6 h-6 mr-2" />
-//                   <p className="text-sm hover:text-CPC-sky">
-//                     Organizer Profile
-//                   </p>
-//                 </NavLink>
-//               </li>
-//               <li onClick={handleNavClick}>
-//                 <NavLink
-//                   to="/dashboard/AllUsers"
-//                   className="flex items-center p-2 rounded-xl"
-//                 >
-//                   <FaUsers className="w-6 h-6 mr-2" />
-//                   <p className="text-sm hover:text-CPC-sky">All Users</p>
-//                 </NavLink>
-//               </li>
-//               <li onClick={handleNavClick}>
-//                 <NavLink
-//                   to="/dashboard/addACamp"
-//                   className="flex items-center p-2 rounded-xl"
-//                 >
-//                   <MdAddBusiness className="w-6 h-6 mr-2" />
-//                   <p className="text-sm hover:text-CPC-sky">Add A Camp</p>
-//                 </NavLink>
-//               </li>
-//               <li onClick={handleNavClick}>
-//                 <NavLink
-//                   to="/dashboard/manageCamps"
-//                   className="flex items-center p-2 rounded-xl"
-//                 >
-//                   <MdHomeWork className="w-6 h-6 mr-2" />
-//                   <p className="text-sm hover:text-CPC-sky">Manage Camps</p>
-//                 </NavLink>
-//               </li>
-//               <li onClick={handleNavClick}>
-//                 <NavLink
-//                   to="/dashboard/manageRegisteredCamps"
-//                   className="flex items-center p-2 rounded-xl"
-//                 >
-//                   <BsPersonWorkspace className="w-4 h-4 mr-2" />
-//                   <p className="text-sm hover:text-CPC-sky">
-//                     Manage Reg. Camps
-//                   </p>
-//                 </NavLink>
-//               </li>
-//             </>
-//           ) : (
-//             <>
-//               <li onClick={handleNavClick}>
-//                 <NavLink
-//                   to="/dashboard/userAnalytics"
-//                   className="flex items-center p-2 rounded-xl"
-//                 >
-//                   <MdAnalytics className="w-6 h-6 mr-2" />
-//                   <p className="text-sm hover:text-CPC-sky">Analytics</p>
-//                 </NavLink>
-//               </li>
-//               <li onClick={handleNavClick}>
-//                 <NavLink
-//                   to="/dashboard/ParticipantInformations"
-//                   className="flex items-center p-2 rounded-xl"
-//                 >
-//                   <MdOutlineMedicalInformation className="w-6 h-6 mr-2" />
-//                   <p className="text-sm hover:text-CPC-sky">
-//                     Participant Informations
-//                   </p>
-//                 </NavLink>
-//               </li>
-//               <li onClick={handleNavClick}>
-//                 <NavLink
-//                   to="/dashboard/userRequiestedCamps"
-//                   className="flex items-center p-2 rounded-xl"
-//                 >
-//                   <GiCampingTent className="w-6 h-6 mr-2" />
-//                   <p className="text-sm hover:text-CPC-sky">Requested Camps</p>
-//                 </NavLink>
-//               </li>
-//               <li onClick={handleNavClick}>
-//                 <NavLink
-//                   to="/dashboard/userPaymentHistory"
-//                   className="flex items-center p-2 rounded-xl"
-//                 >
-//                   <FaMoneyCheckAlt className="w-6 h-6 mr-2" />
-//                   <p className="text-sm hover:text-CPC-sky">Payment History</p>
-//                 </NavLink>
-//               </li>
-//             </>
-//           )}
-
-//           <hr className="w-full my-5 border-gray-300" />
-
-//           <li onClick={handleNavClick}>
-//             <NavLink
-//               to="/dashboard/dashboardInterface"
-//               className="flex items-center p-2 rounded-xl"
-//             >
-//               <MdDashboard className="w-6 h-6 mr-2" />
-//               Dashboard
-//             </NavLink>
-//           </li>
-//           <li onClick={handleNavClick}>
-//             <NavLink to="/" className="flex items-center p-2 rounded-xl">
-//               <IoMdHome className="w-6 h-6 mr-2" />
-//               Home
-//             </NavLink>
-//           </li>
-//           <li onClick={handleNavClick}>
-//             <NavLink
-//               to="/availableCamps"
-//               className="flex items-center p-2 rounded-xl"
-//             >
-//               <FaHouseMedical className="w-6 h-6 mr-2" />
-//               Available Camps
-//             </NavLink>
-//           </li>
-//         </ul>
-//       </div>
-
-//       {/* Main Content */}
-//       <div className="flex-1">
-//         <Outlet />
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Dashboard;
-import { Profiler, useEffect, useState } from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import UseAdmin from "../../CustomHooks/UseAdmin";
 import {
   MdAddBusiness,
@@ -257,6 +21,8 @@ import {
   clearAllBodyScrollLocks,
 } from "body-scroll-lock";
 import { LogOut, User } from "lucide-react";
+import toast from "react-hot-toast";
+import { AuthContext } from "../../Auth/AuthProvider";
 
 const navLinkClass = ({ isActive }) =>
   `flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-colors ${
@@ -268,12 +34,25 @@ const navLinkClass = ({ isActive }) =>
 const Dashboard = () => {
   const [isAdmin] = UseAdmin();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const navigate = useNavigate();
+  const { logoutUser } = useContext(AuthContext);
 
   const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
   const closeSidebar = () => setIsSidebarOpen(false);
 
   const handleNavClick = () => {
     if (window.innerWidth < 768) setIsSidebarOpen(false);
+  };
+
+  // Handle Logout
+  const handleLogout = () => {
+    logoutUser().then(() => {
+      // navigating the user
+      navigate("/");
+
+      // showing an alert
+      toast.success("Logout successfull");
+    });
   };
 
   useEffect(() => {
@@ -431,7 +210,7 @@ const Dashboard = () => {
               <span>Available Camps</span>
             </NavLink>
           </li>
-          <li onClick={handleNavClick}>
+          <li onClick={handleLogout}>
             <NavLink to="/availableCamps" className={navLinkClass}>
               <LogOut className="w-5 h-5 shrink-0" />
               <span>Logout</span>
