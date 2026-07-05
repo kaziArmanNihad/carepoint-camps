@@ -1,4 +1,240 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
+// import { NavLink, Outlet } from "react-router-dom";
+// import UseAdmin from "../../CustomHooks/UseAdmin";
+// import {
+//   MdAddBusiness,
+//   MdAnalytics,
+//   MdDashboard,
+//   MdHomeWork,
+// } from "react-icons/md";
+// import { MdOutlineMedicalInformation } from "react-icons/md";
+// import { GiCampingTent } from "react-icons/gi";
+// import { FaMoneyCheckAlt, FaUsers, FaUserShield } from "react-icons/fa";
+// import { IoMdHome } from "react-icons/io";
+// import { FaHouseMedical } from "react-icons/fa6";
+// import { BsPersonWorkspace } from "react-icons/bs";
+// import {
+//   disableBodyScroll,
+//   enableBodyScroll,
+//   clearAllBodyScrollLocks,
+// } from "body-scroll-lock";
+
+// const Dashboard = () => {
+//   const [isAdmin] = UseAdmin();
+//   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+//   const toggleSidebar = () => setIsSidebarOpen((preValue) => !preValue);
+
+//   // Close sidebar only on small screens
+//   const handleNavClick = () => {
+//     if (window.innerWidth < 768) setIsSidebarOpen(false);
+//   };
+
+//   // screen lock when side bar is open
+//   useEffect(() => {
+//     if (isSidebarOpen) {
+//       disableBodyScroll(document.body);
+//     } else {
+//       enableBodyScroll(document.body);
+//     }
+
+//     return () => clearAllBodyScrollLocks(document.body);
+//   }, [isSidebarOpen]);
+
+//   return (
+//     <div className="flex flex-col md:flex-row min-h-screen font-poppins">
+//       {/* Toggle Button for Small Screens */}
+//       <div className="text-white bg-CPC-ocean flex justify-start items-center gap-4 md:hidden">
+//         <div
+//           tabIndex={0}
+//           role="button"
+//           onClick={toggleSidebar}
+//           className="btn btn-ghost"
+//         >
+//           <svg
+//             xmlns="http://www.w3.org/2000/svg"
+//             className="h-5 w-5"
+//             fill="none"
+//             viewBox="0 0 24 24"
+//             stroke="currentColor"
+//           >
+//             <path
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//               strokeWidth="2"
+//               d="M4 6h16M4 12h8m-8 6h16"
+//             />
+//           </svg>
+//         </div>
+//         <h1>Carepoint Camp</h1>
+//       </div>
+
+//       {/* Sidebar */}
+//       <div
+//         className={`${
+//           isSidebarOpen ? "block" : "hidden"
+//         } md:block w-full md:w-64 min-h-screen bg-CPC-ocean text-white md:relative absolute z-10`}
+//       >
+//         <div className="text-white bg-CPC-ocean flex justify-start items-center gap-4 md:hidden">
+//           <div
+//             tabIndex={0}
+//             role="button"
+//             onClick={toggleSidebar}
+//             className="btn btn-ghost"
+//           >
+//             <svg
+//               xmlns="http://www.w3.org/2000/svg"
+//               className="h-5 w-5"
+//               fill="none"
+//               viewBox="0 0 24 24"
+//               stroke="currentColor"
+//             >
+//               <path
+//                 strokeLinecap="round"
+//                 strokeLinejoin="round"
+//                 strokeWidth="2"
+//                 d="M4 6h16M4 12h8m-8 6h16"
+//               />
+//             </svg>
+//           </div>
+//           <h1>Carepoint Camp</h1>
+//         </div>
+//         <ul className="menu p-4 space-y-2">
+//           {/* admin routes */}
+//           {isAdmin ? (
+//             <>
+//               <li onClick={handleNavClick}>
+//                 <NavLink
+//                   to="/dashboard/organizerProfile"
+//                   className="flex items-center p-2 rounded-xl"
+//                 >
+//                   <FaUserShield className="w-6 h-6 mr-2" />
+//                   <p className="text-sm hover:text-CPC-sky">
+//                     Organizer Profile
+//                   </p>
+//                 </NavLink>
+//               </li>
+//               <li onClick={handleNavClick}>
+//                 <NavLink
+//                   to="/dashboard/AllUsers"
+//                   className="flex items-center p-2 rounded-xl"
+//                 >
+//                   <FaUsers className="w-6 h-6 mr-2" />
+//                   <p className="text-sm hover:text-CPC-sky">All Users</p>
+//                 </NavLink>
+//               </li>
+//               <li onClick={handleNavClick}>
+//                 <NavLink
+//                   to="/dashboard/addACamp"
+//                   className="flex items-center p-2 rounded-xl"
+//                 >
+//                   <MdAddBusiness className="w-6 h-6 mr-2" />
+//                   <p className="text-sm hover:text-CPC-sky">Add A Camp</p>
+//                 </NavLink>
+//               </li>
+//               <li onClick={handleNavClick}>
+//                 <NavLink
+//                   to="/dashboard/manageCamps"
+//                   className="flex items-center p-2 rounded-xl"
+//                 >
+//                   <MdHomeWork className="w-6 h-6 mr-2" />
+//                   <p className="text-sm hover:text-CPC-sky">Manage Camps</p>
+//                 </NavLink>
+//               </li>
+//               <li onClick={handleNavClick}>
+//                 <NavLink
+//                   to="/dashboard/manageRegisteredCamps"
+//                   className="flex items-center p-2 rounded-xl"
+//                 >
+//                   <BsPersonWorkspace className="w-4 h-4 mr-2" />
+//                   <p className="text-sm hover:text-CPC-sky">
+//                     Manage Reg. Camps
+//                   </p>
+//                 </NavLink>
+//               </li>
+//             </>
+//           ) : (
+//             <>
+//               <li onClick={handleNavClick}>
+//                 <NavLink
+//                   to="/dashboard/userAnalytics"
+//                   className="flex items-center p-2 rounded-xl"
+//                 >
+//                   <MdAnalytics className="w-6 h-6 mr-2" />
+//                   <p className="text-sm hover:text-CPC-sky">Analytics</p>
+//                 </NavLink>
+//               </li>
+//               <li onClick={handleNavClick}>
+//                 <NavLink
+//                   to="/dashboard/ParticipantInformations"
+//                   className="flex items-center p-2 rounded-xl"
+//                 >
+//                   <MdOutlineMedicalInformation className="w-6 h-6 mr-2" />
+//                   <p className="text-sm hover:text-CPC-sky">
+//                     Participant Informations
+//                   </p>
+//                 </NavLink>
+//               </li>
+//               <li onClick={handleNavClick}>
+//                 <NavLink
+//                   to="/dashboard/userRequiestedCamps"
+//                   className="flex items-center p-2 rounded-xl"
+//                 >
+//                   <GiCampingTent className="w-6 h-6 mr-2" />
+//                   <p className="text-sm hover:text-CPC-sky">Requested Camps</p>
+//                 </NavLink>
+//               </li>
+//               <li onClick={handleNavClick}>
+//                 <NavLink
+//                   to="/dashboard/userPaymentHistory"
+//                   className="flex items-center p-2 rounded-xl"
+//                 >
+//                   <FaMoneyCheckAlt className="w-6 h-6 mr-2" />
+//                   <p className="text-sm hover:text-CPC-sky">Payment History</p>
+//                 </NavLink>
+//               </li>
+//             </>
+//           )}
+
+//           <hr className="w-full my-5 border-gray-300" />
+
+//           <li onClick={handleNavClick}>
+//             <NavLink
+//               to="/dashboard/dashboardInterface"
+//               className="flex items-center p-2 rounded-xl"
+//             >
+//               <MdDashboard className="w-6 h-6 mr-2" />
+//               Dashboard
+//             </NavLink>
+//           </li>
+//           <li onClick={handleNavClick}>
+//             <NavLink to="/" className="flex items-center p-2 rounded-xl">
+//               <IoMdHome className="w-6 h-6 mr-2" />
+//               Home
+//             </NavLink>
+//           </li>
+//           <li onClick={handleNavClick}>
+//             <NavLink
+//               to="/availableCamps"
+//               className="flex items-center p-2 rounded-xl"
+//             >
+//               <FaHouseMedical className="w-6 h-6 mr-2" />
+//               Available Camps
+//             </NavLink>
+//           </li>
+//         </ul>
+//       </div>
+
+//       {/* Main Content */}
+//       <div className="flex-1">
+//         <Outlet />
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Dashboard;
+import { Profiler, useEffect, useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import UseAdmin from "../../CustomHooks/UseAdmin";
 import {
@@ -6,8 +242,10 @@ import {
   MdAnalytics,
   MdDashboard,
   MdHomeWork,
+  MdOutlineMedicalInformation,
+  MdMenu,
+  MdClose,
 } from "react-icons/md";
-import { MdOutlineMedicalInformation } from "react-icons/md";
 import { GiCampingTent } from "react-icons/gi";
 import { FaMoneyCheckAlt, FaUsers, FaUserShield } from "react-icons/fa";
 import { IoMdHome } from "react-icons/io";
@@ -18,215 +256,192 @@ import {
   enableBodyScroll,
   clearAllBodyScrollLocks,
 } from "body-scroll-lock";
+import { LogOut, User } from "lucide-react";
+
+const navLinkClass = ({ isActive }) =>
+  `flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-colors ${
+    isActive
+      ? "bg-white/10 text-black font-medium"
+      : "text-white/80 hover:bg-white/5 hover:text-black"
+  }`;
 
 const Dashboard = () => {
   const [isAdmin] = UseAdmin();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const toggleSidebar = () => setIsSidebarOpen((preValue) => !preValue);
+  const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
+  const closeSidebar = () => setIsSidebarOpen(false);
 
-  // Close sidebar only on small screens
   const handleNavClick = () => {
     if (window.innerWidth < 768) setIsSidebarOpen(false);
   };
 
-  // screen lock when side bar is open
   useEffect(() => {
     if (isSidebarOpen) {
       disableBodyScroll(document.body);
     } else {
       enableBodyScroll(document.body);
     }
-
     return () => clearAllBodyScrollLocks(document.body);
   }, [isSidebarOpen]);
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen font-poppins">
-      {/* Toggle Button for Small Screens */}
-      <div className="text-white bg-CPC-ocean flex justify-start items-center gap-4 md:hidden">
-        <div
-          tabIndex={0}
-          role="button"
+      {/* Mobile top bar (single instance) */}
+      <div className="md:hidden sticky top-0 z-30 flex items-center gap-3 bg-CPC-ocean text-white px-4 py-3 shadow-sm">
+        <button
+          type="button"
           onClick={toggleSidebar}
-          className="btn btn-ghost"
+          aria-label={isSidebarOpen ? "Close menu" : "Open menu"}
+          className="p-2 rounded-lg hover:bg-white/10 transition-colors"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4 6h16M4 12h8m-8 6h16"
-            />
-          </svg>
-        </div>
-        <h1>Carepoint Camp</h1>
+          {isSidebarOpen ? (
+            <MdClose className="w-5 h-5" />
+          ) : (
+            <MdMenu className="w-5 h-5" />
+          )}
+        </button>
+        <h1 className="font-semibold">Carepoint Camp</h1>
       </div>
 
+      {/* Backdrop overlay (mobile only, shown when sidebar is open) */}
+      {isSidebarOpen && (
+        <div
+          onClick={closeSidebar}
+          aria-hidden="true"
+          className="md:hidden fixed inset-0 bg-black/50 z-20"
+        />
+      )}
+
       {/* Sidebar */}
-      <div
-        className={`${
-          isSidebarOpen ? "block" : "hidden"
-        } md:block w-full md:w-64 min-h-screen bg-CPC-ocean text-white md:relative absolute z-10`}
+      <aside
+        className={`fixed md:static top-0 left-0 h-full md:h-auto w-72 md:w-64 min-h-screen bg-CPC-ocean text-white z-30
+          transform transition-transform duration-300 ease-in-out
+          ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0`}
       >
-        <div className="text-white bg-CPC-ocean flex justify-start items-center gap-4 md:hidden">
-          <div
-            tabIndex={0}
-            role="button"
-            onClick={toggleSidebar}
-            className="btn btn-ghost"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />
-            </svg>
-          </div>
-          <h1>Carepoint Camp</h1>
+        {/* Sidebar header (desktop only, mobile has its own top bar above) */}
+        <div className="hidden md:flex items-center px-4 py-4 border-b border-white/10">
+          <h1 className="font-semibold text-lg">Carepoint Camp</h1>
         </div>
-        <ul className="menu p-4 space-y-2">
-          {/* admin routes */}
+
+        <ul className="p-4 space-y-1 overflow-y-auto">
           {isAdmin ? (
             <>
               <li onClick={handleNavClick}>
                 <NavLink
                   to="/dashboard/organizerProfile"
-                  className="flex items-center p-2 rounded-xl"
+                  className={navLinkClass}
                 >
-                  <FaUserShield className="w-6 h-6 mr-2" />
-                  <p className="text-sm hover:text-CPC-sky">
-                    Organizer Profile
-                  </p>
+                  <FaUserShield className="w-5 h-5 shrink-0" />
+                  <span>Organizer Profile</span>
                 </NavLink>
               </li>
               <li onClick={handleNavClick}>
-                <NavLink
-                  to="/dashboard/AllUsers"
-                  className="flex items-center p-2 rounded-xl"
-                >
-                  <FaUsers className="w-6 h-6 mr-2" />
-                  <p className="text-sm hover:text-CPC-sky">All Users</p>
+                <NavLink to="/dashboard/AllUsers" className={navLinkClass}>
+                  <FaUsers className="w-5 h-5 shrink-0" />
+                  <span>All Users</span>
                 </NavLink>
               </li>
               <li onClick={handleNavClick}>
-                <NavLink
-                  to="/dashboard/addACamp"
-                  className="flex items-center p-2 rounded-xl"
-                >
-                  <MdAddBusiness className="w-6 h-6 mr-2" />
-                  <p className="text-sm hover:text-CPC-sky">Add A Camp</p>
+                <NavLink to="/dashboard/addACamp" className={navLinkClass}>
+                  <MdAddBusiness className="w-5 h-5 shrink-0" />
+                  <span>Add A Camp</span>
                 </NavLink>
               </li>
               <li onClick={handleNavClick}>
-                <NavLink
-                  to="/dashboard/manageCamps"
-                  className="flex items-center p-2 rounded-xl"
-                >
-                  <MdHomeWork className="w-6 h-6 mr-2" />
-                  <p className="text-sm hover:text-CPC-sky">Manage Camps</p>
+                <NavLink to="/dashboard/manageCamps" className={navLinkClass}>
+                  <MdHomeWork className="w-5 h-5 shrink-0" />
+                  <span>Manage Camps</span>
                 </NavLink>
               </li>
               <li onClick={handleNavClick}>
                 <NavLink
                   to="/dashboard/manageRegisteredCamps"
-                  className="flex items-center p-2 rounded-xl"
+                  className={navLinkClass}
                 >
-                  <BsPersonWorkspace className="w-4 h-4 mr-2" />
-                  <p className="text-sm hover:text-CPC-sky">
-                    Manage Reg. Camps
-                  </p>
+                  <BsPersonWorkspace className="w-5 h-5 shrink-0" />
+                  <span>Manage Reg. Camps</span>
                 </NavLink>
               </li>
             </>
           ) : (
             <>
               <li onClick={handleNavClick}>
-                <NavLink
-                  to="/dashboard/userAnalytics"
-                  className="flex items-center p-2 rounded-xl"
-                >
-                  <MdAnalytics className="w-6 h-6 mr-2" />
-                  <p className="text-sm hover:text-CPC-sky">Analytics</p>
+                <NavLink to="/dashboard/profile" className={navLinkClass}>
+                  <User className="w-5 h-5 shrink-0" />
+                  <span>Profile</span>
+                </NavLink>
+              </li>
+              <li onClick={handleNavClick}>
+                <NavLink to="/dashboard/userAnalytics" className={navLinkClass}>
+                  <MdAnalytics className="w-5 h-5 shrink-0" />
+                  <span>Analytics</span>
                 </NavLink>
               </li>
               <li onClick={handleNavClick}>
                 <NavLink
                   to="/dashboard/ParticipantInformations"
-                  className="flex items-center p-2 rounded-xl"
+                  className={navLinkClass}
                 >
-                  <MdOutlineMedicalInformation className="w-6 h-6 mr-2" />
-                  <p className="text-sm hover:text-CPC-sky">
-                    Participant Informations
-                  </p>
+                  <MdOutlineMedicalInformation className="w-5 h-5 shrink-0" />
+                  <span>Participant Informations</span>
                 </NavLink>
               </li>
               <li onClick={handleNavClick}>
                 <NavLink
                   to="/dashboard/userRequiestedCamps"
-                  className="flex items-center p-2 rounded-xl"
+                  className={navLinkClass}
                 >
-                  <GiCampingTent className="w-6 h-6 mr-2" />
-                  <p className="text-sm hover:text-CPC-sky">Requested Camps</p>
+                  <GiCampingTent className="w-5 h-5 shrink-0" />
+                  <span>Requested Camps</span>
                 </NavLink>
               </li>
               <li onClick={handleNavClick}>
                 <NavLink
                   to="/dashboard/userPaymentHistory"
-                  className="flex items-center p-2 rounded-xl"
+                  className={navLinkClass}
                 >
-                  <FaMoneyCheckAlt className="w-6 h-6 mr-2" />
-                  <p className="text-sm hover:text-CPC-sky">Payment History</p>
+                  <FaMoneyCheckAlt className="w-5 h-5 shrink-0" />
+                  <span>Payment History</span>
                 </NavLink>
               </li>
             </>
           )}
 
-          <hr className="w-full my-5 border-gray-300" />
+          <li className="!mt-4 !mb-2 border-t border-white/10" />
 
           <li onClick={handleNavClick}>
             <NavLink
               to="/dashboard/dashboardInterface"
-              className="flex items-center p-2 rounded-xl"
+              className={navLinkClass}
             >
-              <MdDashboard className="w-6 h-6 mr-2" />
-              Dashboard
+              <MdDashboard className="w-5 h-5 shrink-0" />
+              <span>Dashboard</span>
             </NavLink>
           </li>
           <li onClick={handleNavClick}>
-            <NavLink to="/" className="flex items-center p-2 rounded-xl">
-              <IoMdHome className="w-6 h-6 mr-2" />
-              Home
+            <NavLink to="/" className={navLinkClass}>
+              <IoMdHome className="w-5 h-5 shrink-0" />
+              <span>Home</span>
             </NavLink>
           </li>
           <li onClick={handleNavClick}>
-            <NavLink
-              to="/availableCamps"
-              className="flex items-center p-2 rounded-xl"
-            >
-              <FaHouseMedical className="w-6 h-6 mr-2" />
-              Available Camps
+            <NavLink to="/availableCamps" className={navLinkClass}>
+              <FaHouseMedical className="w-5 h-5 shrink-0" />
+              <span>Available Camps</span>
+            </NavLink>
+          </li>
+          <li onClick={handleNavClick}>
+            <NavLink to="/availableCamps" className={navLinkClass}>
+              <LogOut className="w-5 h-5 shrink-0" />
+              <span>Logout</span>
             </NavLink>
           </li>
         </ul>
-      </div>
+      </aside>
 
       {/* Main Content */}
-      <div className="flex-1">
+      <div className="flex-1 min-w-0">
         <Outlet />
       </div>
     </div>

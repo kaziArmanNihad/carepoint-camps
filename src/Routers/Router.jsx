@@ -25,6 +25,7 @@ import AdminRoute from "./AdminRoute";
 import DashboardInterface from "../Pages/Dashboard/DashboardInterface";
 import AboutUs from "../Pages/AboutUs/AboutUs";
 import ContactUs from "../Pages/ContactUs/ContactUs";
+import ProfilePage from "../Pages/Dashboard/UserPages/Profile/Profile";
 
 const router = createBrowserRouter([
   {
@@ -84,6 +85,10 @@ const router = createBrowserRouter([
             <DashboardInterface />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/dashboard/profile",
+        element: <ProfilePage />,
       },
       {
         path: "/dashboard/userAnalytics",

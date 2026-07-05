@@ -18,6 +18,7 @@ const DashboardInterface = () => {
       </div>
     );
   }
+
   return (
     <div className="w-full min-h-screen bg-sky-100">
       <div className="w-full md:w-4/5 mx-auto rounded-xl flex flex-col justify-center items-center p-4 text-black">
