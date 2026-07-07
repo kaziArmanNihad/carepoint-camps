@@ -6,6 +6,7 @@ import UseAxios from "../../../../CustomHooks/UseAxios";
 import { Link } from "react-router-dom";
 import UsePrimaryBtn from "../../../../CustomHooks/UsePrimaryBtn";
 import toast from "react-hot-toast";
+import { ClipboardX, CreditCard, Clock3, CheckCircle2 } from "lucide-react";
 
 const UserRequiestedCamps = () => {
   // context api
@@ -54,104 +55,126 @@ const UserRequiestedCamps = () => {
   // checking the user
   if (!user) {
     return (
-      <div className="w-full h-full my-10 flex flex-col justify-center items-center">
-        <p className="w-96 h-full loading loading-infinity loading-xl"></p>
-        <h1 className="text-4xl">Loading Data...</h1>
+      <div className="w-full min-h-[70vh] flex flex-col justify-center items-center gap-3">
+        <span className="loading loading-infinity loading-xl text-teal-600"></span>
+        <p className="text-slate-500 font-medium tracking-wide">
+          Loading data…
+        </p>
       </div>
     );
   }
 
   if (participantRequiests.length === 0) {
     return (
-      <div className="w-full h-screen bg-sky-100">
-        <div className="w-4/5 h-80 mx-auto my-10 flex justify-center items-center flex-col gap-5">
-          <h1 className="text-6xl text-center text-CPC-ocean font-bold">
-            No Requiests Found!
+      <div className="w-full min-h-screen bg-slate-50 flex justify-center items-center p-4">
+        <div className="flex flex-col items-center gap-3 text-center max-w-sm">
+          <span className="flex items-center justify-center w-14 h-14 rounded-full bg-slate-100 text-slate-400">
+            <ClipboardX className="w-7 h-7" />
+          </span>
+          <h1 className="text-xl font-bold text-slate-800">
+            No requests found
           </h1>
+          <p className="text-slate-500 text-sm">
+            Camps you request to join will show up here for payment and status
+            tracking.
+          </p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="w-full min-h-screen p-2 bg-sky-100 overflow-hidden">
-      <div className="bg-CPC-ocean w-full md:w-11/12 min-h-full mx-auto my-10 rounded-xl p-5">
-        <h1 className="text-center text-2xl font-bold p-4 text-white uppercase">
-          Requested Camps
-        </h1>
-        {/* table content */}
-        <div className="overflow-x-auto my-5">
-          <table className="min-w-full divide-y divide-gray-200">
-            {/* head */}
-            <thead>
-              <tr className="text-white uppercase bg-CPC-sky">
-                <th className="px-4 py-2 text-left text-sm font-medium">SL</th>
-                <th className="px-4 py-2 text-left text-sm font-medium">
-                  Camp Name
-                </th>
-                <th className="px-4 py-2 text-left text-sm font-medium">
-                  Camp Price
-                </th>
-                <th className="px-4 py-2 text-left text-sm font-medium">
-                  Participant Name
-                </th>
-                <th className="px-4 py-2 text-left text-sm font-medium">
-                  Payment Status
-                </th>
-                <th className="px-4 py-2 text-left text-sm font-medium">
-                  Confirmation Status
-                </th>
-                <th className="px-4 py-2 text-left text-sm font-medium">
-                  Action
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {participantRequiests.map((participant, index) => (
-                <tr key={participant._id} className="text-white">
-                  <td className="px-4 py-2">{index + 1}</td>
-                  <td className="px-4 py-2">{participant.name}</td>
-                  <td className="px-4 py-2">{participant.price}</td>
-                  <td className="px-4 py-2">{participant.userName}</td>
-                  <td className="px-4 py-2">
-                    {participant.paymentStatus === "pay" ? (
-                      <Link to={`/dashboard/payment/${participant._id}`}>
-                        <UsePrimaryBtn blackBorder>Pay</UsePrimaryBtn>
-                      </Link>
-                    ) : (
-                      <UsePrimaryBtn disabled>Paid</UsePrimaryBtn>
-                    )}
-                  </td>
-                  <td className="px-4 py-2">
-                    {participant.confirmationStatus === "pending" ? (
-                      <h1 className="p-2 rounded-xl uppercase text-yellow-500 text-2xl font-bold">
-                        Pending
-                      </h1>
-                    ) : (
-                      <h1 className="p-2 rounded-xl uppercase text-green-500 text-2xl font-bold">
-                        Confirmed
-                      </h1>
-                    )}
-                  </td>
-                  <td className="px-4 py-2">
-                    {participant.paymentStatus === "pay" ? (
-                      <UsePrimaryBtn
-                        onClick={() => handleDelete(participant._id)}
-                        isLogout
-                        blackBorder
-                      >
-                        Cancel
-                      </UsePrimaryBtn>
-                    ) : (
-                      <UsePrimaryBtn disabled isLogout blackBorder>
-                        Cancel
-                      </UsePrimaryBtn>
-                    )}
-                  </td>
+    <div className="w-full min-h-screen bg-slate-50 py-10 px-4">
+      <div className="max-w-6xl mx-auto">
+        <div className="mb-6">
+          <h1 className="text-2xl md:text-3xl font-bold text-slate-900">
+            Requested Camps
+          </h1>
+          <p className="text-slate-500 text-sm mt-1">
+            Track payment and confirmation status for camps you&#39;ve requested
+          </p>
+        </div>
+
+        <div className="bg-white rounded-2xl shadow-md border border-slate-100 overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full text-left text-sm">
+              <thead>
+                <tr className="bg-CPC-ocean text-black uppercase text-xs tracking-wide">
+                  <th className="px-4 py-3 font-semibold">#</th>
+                  <th className="px-4 py-3 font-semibold">Camp Name</th>
+                  <th className="px-4 py-3 font-semibold">Price</th>
+                  <th className="px-4 py-3 font-semibold">Participant</th>
+                  <th className="px-4 py-3 font-semibold">Payment</th>
+                  <th className="px-4 py-3 font-semibold">Confirmation</th>
+                  <th className="px-4 py-3 font-semibold text-right">Action</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y bg-CPC-sky">
+                {participantRequiests.map((participant, index) => (
+                  <tr
+                    key={participant._id}
+                    className="hover:bg-slate-50/70 transition-colors"
+                  >
+                    <td className="px-4 py-3 text-black">{index + 1}</td>
+                    <td className="px-4 py-3 font-medium text-slate-800">
+                      {participant.name}
+                    </td>
+                    <td className="px-4 py-3 text-black">
+                      {participant.price}
+                    </td>
+                    <td className="px-4 py-3 text-black">
+                      {participant.userName}
+                    </td>
+                    <td className="px-4 py-3">
+                      {participant.paymentStatus === "pay" ? (
+                        <Link to={`/dashboard/payment/${participant._id}`}>
+                          <UsePrimaryBtn blackBorder>
+                            <span className="flex items-center gap-1.5">
+                              <CreditCard className="w-3.5 h-3.5" />
+                              Pay
+                            </span>
+                          </UsePrimaryBtn>
+                        </Link>
+                      ) : (
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700">
+                          <CheckCircle2 className="w-3.5 h-3.5" />
+                          Paid
+                        </span>
+                      )}
+                    </td>
+                    <td className="px-4 py-3">
+                      {participant.confirmationStatus === "pending" ? (
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold uppercase bg-amber-50 text-amber-700">
+                          <Clock3 className="w-3.5 h-3.5" />
+                          Pending
+                        </span>
+                      ) : (
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold uppercase bg-emerald-50 text-emerald-700">
+                          <CheckCircle2 className="w-3.5 h-3.5" />
+                          Confirmed
+                        </span>
+                      )}
+                    </td>
+                    <td className="px-4 py-3 text-right">
+                      {participant.paymentStatus === "pay" ? (
+                        <UsePrimaryBtn
+                          onClick={() => handleDelete(participant._id)}
+                          isLogout
+                          blackBorder
+                        >
+                          Cancel
+                        </UsePrimaryBtn>
+                      ) : (
+                        <UsePrimaryBtn disabled isLogout blackBorder>
+                          Cancel
+                        </UsePrimaryBtn>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>

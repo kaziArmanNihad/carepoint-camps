@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../../../../Auth/AuthProvider";
 import UsePayment from "../../../../CustomHooks/UsePayment";
+import { ReceiptText, Calendar, Hash, Mail } from "lucide-react";
 
 const UserPaymentHistory = () => {
   // context api
@@ -9,6 +10,18 @@ const UserPaymentHistory = () => {
   // hooks
   const [payment] = UsePayment();
 
+  // checking the user
+  if (!user) {
+    return (
+      <div className="w-full min-h-[70vh] flex flex-col justify-center items-center gap-3">
+        <span className="loading loading-infinity loading-xl text-teal-600"></span>
+        <p className="text-slate-500 font-medium tracking-wide">
+          Loading data…
+        </p>
+      </div>
+    );
+  }
+
   // filtering data
   const filteredpaymentData = payment.filter(
     (payment) => payment.email === user.email,
@@ -16,61 +29,81 @@ const UserPaymentHistory = () => {
 
   if (filteredpaymentData.length === 0) {
     return (
-      <div className="w-full h-screen overflow-hidden bg-sky-100">
-        <div className="w-4/5 h-80 mx-auto my-10 flex justify-center items-center flex-col gap-5">
-          <h1 className="text-6xl text-center text-CPC-ocean font-bold">
-            Payment History Not Found!
+      <div className="w-full min-h-screen bg-slate-50 flex justify-center items-center p-4">
+        <div className="flex flex-col items-center gap-3 text-center max-w-sm">
+          <span className="flex items-center justify-center w-14 h-14 rounded-full bg-slate-100 text-slate-400">
+            <ReceiptText className="w-7 h-7" />
+          </span>
+          <h1 className="text-xl font-bold text-slate-800">
+            No payment history found
           </h1>
+          <p className="text-slate-500 text-sm">
+            Payments you make for camps will be recorded here.
+          </p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="w-full min-h-screen overflow-hidden p-2 bg-sky-100">
-      <div className="w-full md:w-11/12 min-h-full mx-auto bg-CPC-ocean my-10 md:rounded-xl p-4">
-        <h1 className="text-2xl text-center p-4 font-bold text-white uppercase">
-          Payment History
-        </h1>
-        {/* table content */}
-        <div className="overflow-x-auto">
-          <table className="min-w-full table-auto">
-            {/* head */}
-            <thead>
-              <tr className="text-white uppercase bg-CPC-sky">
-                <th className="px-2 py-1 text-left">SL</th>
-                <th className="px-2 py-1 text-left">Camp Name</th>
-                <th className="px-2 py-1 text-left">Fees</th>
-                <th className="px-2 py-1 text-left">Email</th>
-                <th className="px-2 py-1 text-left">Date</th>
-                <th className="px-2 py-1 text-left">Transaction Id</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredpaymentData.map((payment, index) => (
-                <tr key={index} className="text-white">
-                  <td className="border-t border-white px-2 py-1">
-                    {index + 1}
-                  </td>
-                  <td className="border-t border-white px-2 py-1">
-                    {payment.campName}
-                  </td>
-                  <td className="border-t border-white px-2 py-1">
-                    {payment.price}
-                  </td>
-                  <td className="border-t border-white px-2 py-1">
-                    {payment.email}
-                  </td>
-                  <td className="border-t border-white px-2 py-1">
-                    {payment.date}
-                  </td>
-                  <td className="border-t border-white px-2 py-1">
-                    {payment.transectionId}
-                  </td>
+    <div className="w-full min-h-screen bg-slate-50 py-10 px-4">
+      <div className="max-w-6xl mx-auto">
+        <div className="mb-6">
+          <h1 className="text-2xl md:text-3xl font-bold text-slate-900">
+            Payment History
+          </h1>
+          <p className="text-slate-500 text-sm mt-1">
+            A record of every payment you&#39;ve made across your camps
+          </p>
+        </div>
+
+        <div className="bg-CPC-sky rounded-2xl shadow-md border border-slate-100 overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full text-left text-sm">
+              <thead>
+                <tr className="bg-CPC-ocean text-black uppercase text-xs tracking-wide">
+                  <th className="px-4 py-3 font-semibold">#</th>
+                  <th className="px-4 py-3 font-semibold">Camp Name</th>
+                  <th className="px-4 py-3 font-semibold">Fees</th>
+                  <th className="px-4 py-3 font-semibold">Email</th>
+                  <th className="px-4 py-3 font-semibold">Date</th>
+                  <th className="px-4 py-3 font-semibold">Transaction ID</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {filteredpaymentData.map((payment, index) => (
+                  <tr
+                    key={payment._id || index}
+                    className="hover:bg-slate-50/70 transition-colors"
+                  >
+                    <td className="px-4 py-3 text-black">{index + 1}</td>
+                    <td className="px-4 py-3 font-medium text-black">
+                      {payment.campName}
+                    </td>
+                    <td className="px-4 py-3 text-black">${payment.price}</td>
+                    <td className="px-4 py-3 text-black">
+                      <span className="flex items-center gap-1.5">
+                        <Mail className="w-3.5 h-3.5 text-black" />
+                        {payment.email}
+                      </span>
+                    </td>
+                    <td className="px-4 py-3 text-black">
+                      <span className="flex items-center gap-1.5">
+                        <Calendar className="w-3.5 h-3.5 text-black" />
+                        {payment.date}
+                      </span>
+                    </td>
+                    <td className="px-4 py-3 text-black font-mono text-xs">
+                      <span className="flex items-center gap-1.5">
+                        <Hash className="w-3.5 h-3.5 text-black shrink-0" />
+                        {payment.transectionId}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
