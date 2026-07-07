@@ -75,8 +75,9 @@ const AvailableCamps = () => {
     setCurrentPage(selected);
   };
 
+  // bg-[#EEF5F2]
   return (
-    <section className="w-full bg-[#EEF5F2] py-16 md:py-20">
+    <section className="w-full bg-CPC-white py-16 md:py-20">
       <div className="w-11/12 lg:w-4/5 mx-auto">
         {/* Heading */}
         <div className="max-w-2xl mx-auto text-center mb-10">
@@ -122,7 +123,7 @@ const AvailableCamps = () => {
             currentPageData.map((camp) => (
               <div
                 key={camp._id}
-                className="group rounded-2xl overflow-hidden border border-[#0A3B3A]/8 bg-white shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+                className="group rounded-2xl overflow-hidden bg-white shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
               >
                 <div className="relative overflow-hidden">
                   <img
