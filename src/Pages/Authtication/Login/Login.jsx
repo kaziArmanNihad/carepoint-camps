@@ -5,12 +5,13 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Auth/AuthProvider";
 import { useContext } from "react";
 import toast from "react-hot-toast";
-import { HeartHandshake, LogIn } from "lucide-react";
+import { HeartHandshake, LogIn, Eye, EyeOff } from "lucide-react";
+import { useState } from "react";
 
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
-
+  const [showPassword, setShowPassword] = useState(false);
   // Context api
   const { loginUser, googleAuthintication, githubAuthintication } =
     useContext(AuthContext);
@@ -25,17 +26,33 @@ const Login = () => {
 
   // Login with Email
   const onSubmit = (data) => {
-    loginUser(data.email, data.password).then(() => {
-      // showing alert and reseting the form
-      reset();
+    loginUser(data.email, data.password)
+      .then(() => {
+        reset();
 
-      // navigating the user
-      const redirectTo = location?.state?.from || "/";
-      navigate(redirectTo);
+        const redirectTo = location?.state?.from || "/";
+        navigate(redirectTo);
 
-      // showing an alert
-      toast.success("LoggedIn successfully");
-    });
+        toast.success("Logged in successfully");
+      })
+      .catch((error) => {
+        console.error(error);
+
+        let message = "Login failed";
+
+        if (error.code === "auth/invalid-credential") {
+          message = "Invalid email or password";
+        } else if (error.code === "auth/user-not-found") {
+          message = "No account found with this email";
+        } else if (error.code === "auth/wrong-password") {
+          message = "Incorrect password";
+        } else if (error.code === "auth/too-many-requests") {
+          message = "Too many failed attempts. Try again later";
+        }
+
+        toast.error(message);
+        reset();
+      });
   };
 
   // Login with Google
@@ -132,7 +149,7 @@ const Login = () => {
               </div>
 
               {/* Password */}
-              <div>
+              {/* <div>
                 <label
                   htmlFor="password"
                   className="text-sm font-semibold text-gray-700"
@@ -149,6 +166,45 @@ const Login = () => {
                   className="w-full mt-2 px-4 py-3 bg-white border border-gray-200 rounded-lg 
                   focus:outline-none focus:ring-2 focus:ring-[#83c5be] transition"
                 />
+                {errors.password && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.password.message}
+                  </p>
+                )}
+              </div> */}
+              <div>
+                <label
+                  htmlFor="password"
+                  className="text-sm font-semibold text-gray-700"
+                >
+                  Password:
+                </label>
+
+                <div className="relative mt-2">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    id="password"
+                    placeholder="Enter your password"
+                    {...register("password", {
+                      required: "Password is required",
+                    })}
+                    className="w-full px-4 py-3 pr-12 bg-white border border-gray-200 rounded-lg
+      focus:outline-none focus:ring-2 focus:ring-[#83c5be] transition"
+                  />
+
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-[#006d77]"
+                  >
+                    {showPassword ? (
+                      <EyeOff className="w-5 h-5" />
+                    ) : (
+                      <Eye className="w-5 h-5" />
+                    )}
+                  </button>
+                </div>
+
                 {errors.password && (
                   <p className="text-red-500 text-sm mt-1">
                     {errors.password.message}
