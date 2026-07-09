@@ -11,20 +11,26 @@ const AvailableCamps = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
   const [filteredCamps, setFilteredCamps] = useState([]);
+  const [isSearching, setIsSearching] = useState(false); // true while debounce is pending/running
 
   // Debounced dynamic search
   useEffect(() => {
     if (!camp) return;
 
+    if (searchTerm.trim() === "") {
+      setFilteredCamps([]);
+      setIsSearching(false);
+      return;
+    }
+
+    setIsSearching(true);
+
     const handler = setTimeout(() => {
-      if (searchTerm.trim() === "") {
-        setFilteredCamps([]);
-      } else {
-        const results = camp.filter((c) =>
-          c.name.toLowerCase().includes(searchTerm.toLowerCase()),
-        );
-        setFilteredCamps(results);
-      }
+      const results = camp.filter((c) =>
+        c.name.toLowerCase().includes(searchTerm.toLowerCase()),
+      );
+      setFilteredCamps(results);
+      setIsSearching(false);
     }, 500);
 
     return () => clearTimeout(handler);
@@ -34,6 +40,7 @@ const AvailableCamps = () => {
   const handleClear = () => {
     setSearchTerm("");
     setFilteredCamps([]);
+    setIsSearching(false);
     setCurrentPage(0); // reset to first page
   };
 
@@ -95,7 +102,11 @@ const AvailableCamps = () => {
         {/* Search Bar */}
         <div className="flex items-center gap-3 mb-8 max-w-xl mx-auto">
           <div className="relative flex-1">
-            <HiOutlineMagnifyingGlass className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#5b6b66]" />
+            {isSearching ? (
+              <span className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 border-2 border-[#0F6E56]/30 border-t-[#0F6E56] rounded-full animate-spin" />
+            ) : (
+              <HiOutlineMagnifyingGlass className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#5b6b66]" />
+            )}
             <input
               type="text"
               placeholder="Search camps by name..."
@@ -119,7 +130,20 @@ const AvailableCamps = () => {
 
         {/* Camp Cards */}
         <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
-          {currentPageData.length > 0 ? (
+          {isSearching ? (
+            [...Array(6)].map((_, i) => (
+              <div
+                key={i}
+                className="rounded-2xl overflow-hidden border border-[#0A3B3A]/8 bg-white animate-pulse"
+              >
+                <div className="w-full h-48 bg-[#0A3B3A]/10" />
+                <div className="p-5 space-y-3">
+                  <div className="h-4 bg-[#0A3B3A]/10 rounded w-3/4" />
+                  <div className="h-3 bg-[#0A3B3A]/10 rounded w-1/2" />
+                </div>
+              </div>
+            ))
+          ) : currentPageData.length > 0 ? (
             currentPageData.map((camp) => (
               <div
                 key={camp._id}
@@ -160,7 +184,7 @@ const AvailableCamps = () => {
         </div>
 
         {/* Pagination Controls */}
-        {pageCount > 1 && (
+        {!isSearching && pageCount > 1 && (
           <ReactPaginate
             previousLabel={"Previous"}
             nextLabel={"Next"}

@@ -3,7 +3,6 @@ import { loadStripe } from "@stripe/stripe-js";
 import CheckoutForm from "./CheckoutForm";
 import { useParams } from "react-router";
 import UseParticipant from "../../../../CustomHooks/UseParticipant";
-import UsePrimaryBtn from "../../../../CustomHooks/UsePrimaryBtn";
 
 const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_PK);
 
