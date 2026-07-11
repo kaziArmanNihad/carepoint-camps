@@ -14,9 +14,9 @@ const PrivateRoute = ({ children }) => {
   // checking, if the user is logged in or not
   if (loading) {
     return (
-      <div className="w-full h-screen bg-black flex justify-center items-center flex-col gap-3">
-        <p className="text-white w-80 h-80 loading loading-infinity loading-xl"></p>
-        <h1 className="text-2xl text-white">Loading Data...</h1>
+      <div className="w-full min-h-screen bg-slate-200 flex justify-center items-center flex-col gap-4">
+        <span className="loading loading-infinity loading-xl text-teal-600"></span>
+        <h1 className="text-lg font-medium text-slate-600">Loading Data...</h1>
         <Link to="/">
           <UsePrimaryBtn isCancel={true}>Back to Home Page</UsePrimaryBtn>
         </Link>

@@ -99,7 +99,7 @@ const UserRequiestedCamps = () => {
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
               <thead>
-                <tr className="bg-CPC-ocean text-black uppercase text-xs tracking-wide">
+                <tr className="bg-slate-50 border-b border-slate-100 text-slate-500 uppercase text-xs tracking-wide">
                   <th className="px-4 py-3 font-semibold">#</th>
                   <th className="px-4 py-3 font-semibold">Camp Name</th>
                   <th className="px-4 py-3 font-semibold">Price</th>
@@ -109,26 +109,26 @@ const UserRequiestedCamps = () => {
                   <th className="px-4 py-3 font-semibold text-right">Action</th>
                 </tr>
               </thead>
-              <tbody className="divide-y bg-CPC-sky">
+              <tbody className="divide-y divide-slate-100">
                 {participantRequiests.map((participant, index) => (
                   <tr
                     key={participant._id}
                     className="hover:bg-slate-50/70 transition-colors"
                   >
-                    <td className="px-4 py-3 text-black">{index + 1}</td>
+                    <td className="px-4 py-3 text-slate-500">{index + 1}</td>
                     <td className="px-4 py-3 font-medium text-slate-800">
                       {participant.name}
                     </td>
-                    <td className="px-4 py-3 text-black">
-                      {participant.price}
+                    <td className="px-4 py-3 text-slate-600">
+                      ${participant.price}
                     </td>
-                    <td className="px-4 py-3 text-black">
+                    <td className="px-4 py-3 text-slate-600">
                       {participant.userName}
                     </td>
                     <td className="px-4 py-3">
                       {participant.paymentStatus === "pay" ? (
                         <Link to={`/dashboard/payment/${participant._id}`}>
-                          <UsePrimaryBtn blackBorder>
+                          <UsePrimaryBtn>
                             <span className="flex items-center gap-1.5">
                               <CreditCard className="w-3.5 h-3.5" />
                               Pay
@@ -160,12 +160,11 @@ const UserRequiestedCamps = () => {
                         <UsePrimaryBtn
                           onClick={() => handleDelete(participant._id)}
                           isLogout
-                          blackBorder
                         >
                           Cancel
                         </UsePrimaryBtn>
                       ) : (
-                        <UsePrimaryBtn disabled isLogout blackBorder>
+                        <UsePrimaryBtn disabled isLogout>
                           Cancel
                         </UsePrimaryBtn>
                       )}

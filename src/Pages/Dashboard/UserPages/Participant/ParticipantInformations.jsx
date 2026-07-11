@@ -64,11 +64,11 @@ const ParticipantInformations = () => {
           </p>
         </div>
 
-        <div className="bg-CPC-sky rounded-2xl shadow-md border border-slate-100 overflow-hidden">
+        <div className="bg-white rounded-2xl shadow-md border border-slate-100 overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
               <thead>
-                <tr className="bg-CPC-ocean text-black uppercase text-xs tracking-wide">
+                <tr className="bg-slate-50 border-b border-slate-300 text-slate-500 uppercase text-xs tracking-wide">
                   <th className="px-4 py-3 font-semibold">#</th>
                   <th className="px-4 py-3 font-semibold">Camp</th>
                   <th className="px-4 py-3 font-semibold">Location</th>
@@ -86,13 +86,13 @@ const ParticipantInformations = () => {
                     key={participant._id}
                     className="hover:bg-slate-50/70 transition-colors"
                   >
-                    <td className="px-4 py-3 text-black">{index + 1}</td>
+                    <td className="px-4 py-3 text-slate-500">{index + 1}</td>
                     <td className="px-4 py-3 font-medium text-slate-800">
                       {participant.name}
                     </td>
                     <td className="px-4 py-3 text-slate-600">
                       <span className="flex items-center gap-1.5">
-                        <MapPin className="w-6 h-6 text-teal-600" />
+                        <MapPin className="w-3.5 h-3.5 text-teal-600 shrink-0" />
                         {participant.location}
                       </span>
                     </td>

@@ -16,8 +16,8 @@ const AdminRoute = ({ children }) => {
   // checking, if the user is admin or not
   if (loading || isAdminLoading) {
     return (
-      <div className="w-full h-screen bg-black flex justify-center items-center">
-        <p className="text-white w-80 h-80 loading loading-infinity loading-xl"></p>
+      <div className="w-full min-h-screen bg-slate-200 flex justify-center items-center">
+        <span className="loading loading-infinity loading-xl text-teal-600"></span>
       </div>
     );
   }

@@ -10,7 +10,7 @@ import Dashboard from "../Layout/Dashboard/Dashboard";
 import UserRequiestedCamps from "../Pages/Dashboard/UserPages/UserRequiestedCamps/UserRequiestedCamps";
 import UserAnalytics from "../Pages/Dashboard/UserPages/UserAnalytics/UserAnalytics";
 import UserPaymentHistory from "../Pages/Dashboard/UserPages/UserPaymentHistory/UserPaymentHistory";
-import ParticipantProfileUpdate from "../Pages/Dashboard/UserPages/ParticipantProfile.jsx/ParticipantProfileUpdate";
+import ParticipantProfileUpdate from "../Pages/Dashboard/UserPages/Participant/ParticipantProfileUpdate";
 import OrganizerProfile from "../Pages/Dashboard/AdminPages/OrganizerProfile/OrganizerProfile";
 import AddACamp from "../Pages/Dashboard/AdminPages/AddACamp/AddACamp";
 import ManageCamps from "../Pages/Dashboard/AdminPages/ManageCamps/ManageCamps";
@@ -19,13 +19,14 @@ import OrganizerProfileUpdate from "../Pages/Dashboard/AdminPages/OrganizerProfi
 import UpdateManageCamps from "../Pages/Dashboard/AdminPages/ManageCamps/UpdateManageCamps";
 import Payment from "../Pages/Dashboard/UserPages/Payments/Payment";
 import PrivateRoute from "./PrivateRoute";
-import ParticipantInformations from "../Pages/Dashboard/UserPages/ParticipantProfile.jsx/ParticipantInformations";
 import AllUsers from "../Pages/Dashboard/AdminPages/AllUsers/AllUsers";
 import AdminRoute from "./AdminRoute";
 import DashboardInterface from "../Pages/Dashboard/DashboardInterface";
 import AboutUs from "../Pages/AboutUs/AboutUs";
 import ContactUs from "../Pages/ContactUs/ContactUs";
 import ProfilePage from "../Pages/Dashboard/UserPages/Profile/Profile";
+import ProfileUpdate from "../Pages/Dashboard/UserPages/Profile/ProfileUpdate";
+import ParticipantInformations from "../Pages/Dashboard/UserPages/Participant/ParticipantInformations";
 
 const router = createBrowserRouter([
   {
@@ -89,6 +90,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/profile",
         element: <ProfilePage />,
+      },
+      {
+        path: "/dashboard/profileUpdate",
+        element: <ProfileUpdate />,
       },
       {
         path: "/dashboard/userAnalytics",

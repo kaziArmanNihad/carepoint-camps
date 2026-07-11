@@ -57,11 +57,11 @@ const UserPaymentHistory = () => {
           </p>
         </div>
 
-        <div className="bg-CPC-sky rounded-2xl shadow-md border border-slate-100 overflow-hidden">
+        <div className="bg-white rounded-2xl shadow-md border border-slate-100 overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
               <thead>
-                <tr className="bg-CPC-ocean text-black uppercase text-xs tracking-wide">
+                <tr className="bg-white text-black uppercase text-xs tracking-wide border-b border-slate-300">
                   <th className="px-4 py-3 font-semibold">#</th>
                   <th className="px-4 py-3 font-semibold">Camp Name</th>
                   <th className="px-4 py-3 font-semibold">Fees</th>
@@ -70,7 +70,7 @@ const UserPaymentHistory = () => {
                   <th className="px-4 py-3 font-semibold">Transaction ID</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-slate-200">
                 {filteredpaymentData.map((payment, index) => (
                   <tr
                     key={payment._id || index}

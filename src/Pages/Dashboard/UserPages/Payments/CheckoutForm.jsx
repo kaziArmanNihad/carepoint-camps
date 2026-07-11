@@ -115,16 +115,16 @@ const CheckoutForm = ({ price, campName, id }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-full max-w-md mx-auto p-6 bg-CPC-ocean"
+      className="w-full max-w-md mx-auto p-6 bg-white text-black"
     >
       {/* Card input wrapper */}
-      <div className="border-b-2 border-white focus-within:border-sky-400 transition-colors duration-300">
+      <div className="border-b-2 border-white focus-within:border-black transition-colors duration-300">
         <CardElement
           options={{
             style: {
               base: {
                 fontSize: "16px",
-                color: "white",
+                color: "black",
                 "::placeholder": {
                   color: "#cbd5e1", // Tailwind slate-300 equivalent
                 },

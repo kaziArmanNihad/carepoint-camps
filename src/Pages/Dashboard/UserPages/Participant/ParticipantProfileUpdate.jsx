@@ -67,7 +67,7 @@ const ParticipantProfileUpdate = () => {
 
   return (
     <div className="w-full min-h-screen bg-slate-50 flex justify-center items-start p-4 md:p-10">
-      <div className="w-full max-w-3xl bg-CPC-sky rounded-2xl shadow-md border border-slate-100">
+      <div className="w-full max-w-3xl bg-white rounded-2xl shadow-md border border-slate-100">
         {/* Header */}
         <div className="px-6 md:px-8 pt-6 pb-5 border-b border-slate-100">
           <button
@@ -207,7 +207,7 @@ const ParticipantProfileUpdate = () => {
             </div>
           </div>
 
-          <div className="flex gap-3 justify-end items-center px-6 md:px-8 py-5 border-t border-slate-100 bg-CPC-sky rounded-b-2xl">
+          <div className="flex gap-3 justify-end items-center px-6 md:px-8 py-5 border-t border-slate-100 bg-white rounded-b-2xl">
             <UsePrimaryBtn
               onClick={handleCancel}
               type="button"

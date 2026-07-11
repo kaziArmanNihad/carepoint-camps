@@ -22,9 +22,9 @@ const Payment = () => {
   const price = Number(participantInfo.price.slice(1));
 
   return (
-    <div className="w-full min-h-screen overflow-hidden bg-sky-100">
-      <div className="bg-CPC-ocean w-full md:w-4/5 min-h-full mx-auto my-10 shadow-xl rounded-xl">
-        <h1 className="text-2xl font-bold text-center p-3 text-white uppercase">
+    <div className="w-full min-h-screen overflow-hidden bg-slate-50">
+      <div className="bg-white w-full md:w-4/5 min-h-full mx-auto my-10 shadow-xl rounded-xl">
+        <h1 className="text-2xl font-bold text-center p-3 text-black uppercase">
           Payment
         </h1>
 
