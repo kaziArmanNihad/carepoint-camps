@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { AuthContext } from "../../../../Auth/AuthProvider";
 import UseParticipant from "../../../../CustomHooks/UseParticipant";
 import { Link } from "react-router-dom";
-import UsePrimaryBtn from "../../../../CustomHooks/UsePrimaryBtn";
 import { UserX, MapPin, Pencil } from "lucide-react";
 
 const genderBadgeStyles = {
@@ -122,12 +121,15 @@ const ParticipantInformations = () => {
                       <Link
                         to={`/dashboard/participantProfileUpdate/${participant._id}`}
                       >
-                        <UsePrimaryBtn>
+                        <button
+                          type="button"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 bg-white border border-slate-300 hover:border-yellow-300 hover:text-yellow-700 hover:bg-yellow-50 transition-colors"
+                        >
                           <span className="flex items-center gap-1.5">
                             <Pencil className="w-3.5 h-3.5" />
                             Update
                           </span>
-                        </UsePrimaryBtn>
+                        </button>
                       </Link>
                     </td>
                   </tr>

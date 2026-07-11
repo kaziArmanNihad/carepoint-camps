@@ -2,7 +2,6 @@ import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router";
 import UseParticipant from "../../../../CustomHooks/UseParticipant";
 import UseAxios from "../../../../CustomHooks/UseAxios";
-import UsePrimaryBtn from "../../../../CustomHooks/UsePrimaryBtn";
 import toast from "react-hot-toast";
 import {
   Cake,
@@ -208,17 +207,19 @@ const ParticipantProfileUpdate = () => {
           </div>
 
           <div className="flex gap-3 justify-end items-center px-6 md:px-8 py-5 border-t border-slate-100 bg-white rounded-b-2xl">
-            <UsePrimaryBtn
-              onClick={handleCancel}
+            <button
               type="button"
-              isLogout
-              blackBorder
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 bg-white border border-slate-300 hover:border-red-300 hover:text-red-700 hover:bg-red-50 transition-colors"
+              onClick={handleCancel}
             >
               Cancel
-            </UsePrimaryBtn>
-            <UsePrimaryBtn type="submit" blackBorder>
+            </button>
+            <button
+              type="submit"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 bg-white border border-slate-300 hover:border-green-300 hover:text-green-700 hover:bg-green-50 transition-colors"
+            >
               Submit
-            </UsePrimaryBtn>
+            </button>
           </div>
         </form>
       </div>

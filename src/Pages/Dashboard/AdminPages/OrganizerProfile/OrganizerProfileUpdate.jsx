@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import UseUsers from "../../../../CustomHooks/UseUsers";
 import { useNavigate } from "react-router";
 import UseAxios from "../../../../CustomHooks/UseAxios";
-import UsePrimaryBtn from "../../../../CustomHooks/UsePrimaryBtn";
 import toast from "react-hot-toast";
 
 const OrganizerProfileUpdate = () => {
@@ -26,12 +25,11 @@ const OrganizerProfileUpdate = () => {
   const userDetails = users.find((value) => value.email === user.email);
 
   const onSubmit = (data) => {
-    updateUser(data.name, data.photo, data.email)
+    updateUser(data.name, data.photo)
       .then(() => {
         const updateInfo = {
           name: data.name,
           photo: data.photo,
-          email: data.email,
         };
 
         axiosPublic
@@ -65,73 +63,66 @@ const OrganizerProfileUpdate = () => {
   };
 
   return (
-    <div className="w-full min-h-screen flex justify-center items-center bg-sky-100">
-      <div className="w-full md:w-4/5 h-auto mx-auto p-6 my-10 md:rounded-xl bg-CPC-ocean shadow-lg">
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <h1 className="text-2xl p-3 font-bold text-center text-white">
-            Updating Organizer Profile
+    <div className="w-full min-h-screen bg-slate-50 py-10 px-4">
+      <div className="max-w-2xl mx-auto space-y-4">
+        <div className="bg-white rounded-2xl shadow-md border border-slate-100 p-6 md:p-8">
+          <h1 className="text-xl font-semibold text-slate-800 mb-6">
+            Update Organizer Profile
           </h1>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <label className="form-control w-full md:col-span-2">
-              <div className="label">
-                <span className="label-text text-white">Photo URL</span>
-              </div>
-              <input
-                type="text"
-                className="input input-bordered w-full rounded-xl text-black bg-white focus:outline-none focus:ring-2"
-                defaultValue={user.photoURL}
-                {...register("photo", { required: true })}
-              />
-              {errors.photo?.type === "required" && (
-                <p role="alert" className="text-red-500 mt-1">
-                  This field is required
-                </p>
-              )}
-            </label>
 
-            <label className="form-control w-full">
-              <div className="label">
-                <span className="label-text text-white">Name</span>
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+            <div className="grid grid-cols-1  gap-5">
+              <div>
+                <label className="text-xs font-medium text-slate-500 mb-1 block">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  className="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-teal-200 focus:border-teal-300 transition"
+                  defaultValue={user.displayName}
+                  {...register("name", { required: true })}
+                />
+                {errors.name?.type === "required" && (
+                  <p role="alert" className="text-red-500 text-xs mt-1.5">
+                    This field is required
+                  </p>
+                )}
               </div>
-              <input
-                type="text"
-                className="input input-bordered w-full rounded-xl text-black bg-white focus:outline-none focus:ring-2"
-                defaultValue={user.displayName}
-                {...register("name", { required: true })}
-              />
-              {errors.name?.type === "required" && (
-                <p role="alert" className="text-red-500 mt-1">
-                  This field is required
-                </p>
-              )}
-            </label>
+              <div>
+                <label className="text-xs font-medium text-slate-500 mb-1 block">
+                  Photo URL
+                </label>
+                <input
+                  type="text"
+                  className="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-teal-200 focus:border-teal-300 transition"
+                  defaultValue={user.photoURL}
+                  {...register("photo", { required: true })}
+                />
+                {errors.photo?.type === "required" && (
+                  <p role="alert" className="text-red-500 text-xs mt-1.5">
+                    This field is required
+                  </p>
+                )}
+              </div>
+            </div>
 
-            <label className="form-control w-full">
-              <div className="label">
-                <span className="label-text text-white">Email</span>
-              </div>
-              <input
-                type="email"
-                className="input input-bordered w-full rounded-xl text-black bg-white focus:outline-none focus:ring-2"
-                defaultValue={user.email}
-                {...register("email", { required: true })}
-              />
-              {errors.email?.type === "required" && (
-                <p role="alert" className="text-red-500 mt-1">
-                  This field is required
-                </p>
-              )}
-            </label>
-          </div>
-          <div className="flex justify-end items-center mt-5 gap-4">
-            <UsePrimaryBtn onClick={handleCancel} blackBorder isLogout>
-              Cancel
-            </UsePrimaryBtn>
-            <UsePrimaryBtn type="submit" blackBorder isSubmit>
-              Submit
-            </UsePrimaryBtn>
-          </div>
-        </form>
+            <div className="flex justify-end items-center gap-3 pt-2">
+              <button
+                type="button"
+                onClick={handleCancel}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 bg-white border border-slate-300 hover:border-red-300 hover:text-red-700 hover:bg-red-50 transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 bg-white border border-slate-300 hover:border-green-300 hover:text-green-700 hover:bg-green-50 transition-colors"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

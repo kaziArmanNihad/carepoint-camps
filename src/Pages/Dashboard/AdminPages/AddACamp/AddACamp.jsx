@@ -2,8 +2,8 @@ import { useForm } from "react-hook-form";
 import UseAxios from "../../../../CustomHooks/UseAxios";
 import { useContext } from "react";
 import { AuthContext } from "../../../../Auth/AuthProvider";
-import UsePrimaryBtn from "../../../../CustomHooks/UsePrimaryBtn";
 import toast from "react-hot-toast";
+import { PlusCircle } from "lucide-react";
 
 const AddACamp = () => {
   // context api
@@ -42,198 +42,177 @@ const AddACamp = () => {
       });
   };
 
+  const inputClass =
+    "w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-teal-200 focus:border-teal-300 transition";
+  const labelClass = "text-xs font-medium text-slate-500 mb-1 block";
+  const errorClass = "text-red-500 text-xs mt-1.5";
+
   return (
-    <div className="w-full min-h-screen bg-sky-100 overflow-hidden">
-      <div className="bg-CPC-ocean w-full md:w-4/5 min-h-full mx-auto my-10 md:rounded-xl p-4">
-        {/* Responsive heading */}
-        <h1 className="text-center font-bold uppercase p-3 text-xl md:text-2xl text-white">
-          Add a Camp
-        </h1>
+    <div className="w-full min-h-screen bg-slate-50 py-10 px-4">
+      <div className="max-w-4xl mx-auto space-y-6">
+        <div>
+          <h1 className="text-2xl md:text-3xl font-bold text-slate-900">
+            Add a Camp
+          </h1>
+          <p className="text-slate-500 text-sm mt-1">
+            Fill in the details below to publish a new medical camp
+          </p>
+        </div>
 
-        <form onSubmit={handleSubmit(onSubmit)}>
-          {/* Responsive grid layout */}
-          <div className="w-full flex justify-center items-center flex-col p-2 md:p-4">
-            {/* Camp Name */}
-            <label className="form-control w-full">
-              <div className="label">
-                <span className="label-text font-semibold text-white">
-                  Camp Name
-                </span>
+        <div className="bg-white rounded-2xl shadow-md border border-slate-100 p-6 md:p-8">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              {/* Camp Name */}
+              <div>
+                <label className={labelClass}>Camp Name</label>
+                <input
+                  type="text"
+                  placeholder="Rural Health Outreach"
+                  className={inputClass}
+                  {...register("name", { required: true })}
+                />
+                {errors.name?.type === "required" && (
+                  <p role="alert" className={errorClass}>
+                    This field is required
+                  </p>
+                )}
               </div>
-              <input
-                type="text"
-                placeholder="Camp Name"
-                className="input input-bordered w-full bg-white text-black rounded-xl"
-                {...register("name", { required: true })}
-              />
-              {errors.name?.type === "required" && (
-                <p role="alert" className="text-red-500">
-                  This field is required
-                </p>
-              )}
-            </label>
 
-            {/* Camp Fees */}
-            <label className="form-control w-full">
-              <div className="label">
-                <span className="label-text font-semibold text-white">
-                  Camp Fees
-                </span>
+              {/* Camp Fees */}
+              <div>
+                <label className={labelClass}>Camp Fees</label>
+                <input
+                  type="text"
+                  placeholder="500"
+                  className={inputClass}
+                  {...register("price", { required: true })}
+                />
+                {errors.price?.type === "required" && (
+                  <p role="alert" className={errorClass}>
+                    This field is required
+                  </p>
+                )}
               </div>
-              <input
-                type="text"
-                placeholder="Camp Fees"
-                className="input input-bordered w-full bg-white text-black rounded-xl"
-                {...register("price", { required: true })}
-              />
-              {errors.price?.type === "required" && (
-                <p role="alert" className="text-red-500">
-                  This field is required
-                </p>
-              )}
-            </label>
 
-            {/* Date */}
-            <label className="form-control w-full">
-              <div className="label">
-                <span className="label-text font-semibold text-white">
-                  Date
-                </span>
+              {/* Date */}
+              <div>
+                <label className={labelClass}>Date</label>
+                <input
+                  type="date"
+                  className={inputClass}
+                  {...register("date", { required: true })}
+                />
+                {errors.date?.type === "required" && (
+                  <p role="alert" className={errorClass}>
+                    This field is required
+                  </p>
+                )}
               </div>
-              <input
-                type="date"
-                className="input input-bordered w-full bg-white text-black rounded-xl"
-                {...register("date", { required: true })}
-              />
-              {errors.date?.type === "required" && (
-                <p role="alert" className="text-red-500">
-                  This field is required
-                </p>
-              )}
-            </label>
 
-            {/* Location */}
-            <label className="form-control w-full">
-              <div className="label">
-                <span className="label-text font-semibold text-white">
-                  Location
-                </span>
+              {/* Location */}
+              <div>
+                <label className={labelClass}>Location</label>
+                <input
+                  type="text"
+                  placeholder="Dhaka, Bangladesh"
+                  className={inputClass}
+                  {...register("location", { required: true })}
+                />
+                {errors.location?.type === "required" && (
+                  <p role="alert" className={errorClass}>
+                    This field is required
+                  </p>
+                )}
               </div>
-              <input
-                type="text"
-                placeholder="Location"
-                className="input input-bordered w-full bg-white text-black rounded-xl"
-                {...register("location", { required: true })}
-              />
-              {errors.location?.type === "required" && (
-                <p role="alert" className="text-red-500">
-                  This field is required
-                </p>
-              )}
-            </label>
 
-            {/* Healthcare Professional */}
-            <label className="form-control w-full">
-              <div className="label">
-                <span className="label-text font-semibold text-white">
-                  Healthcare Professional
-                </span>
+              {/* Healthcare Professional */}
+              <div>
+                <label className={labelClass}>Healthcare Professional</label>
+                <input
+                  type="text"
+                  placeholder="Doctor / lead name"
+                  className={inputClass}
+                  {...register("leadBy", { required: true })}
+                />
+                {errors.leadBy?.type === "required" && (
+                  <p role="alert" className={errorClass}>
+                    This field is required
+                  </p>
+                )}
               </div>
-              <input
-                type="text"
-                placeholder="Healthcare Professional Name"
-                className="input input-bordered w-full bg-white text-black rounded-xl"
-                {...register("leadBy", { required: true })}
-              />
-              {errors.leadBy?.type === "required" && (
-                <p role="alert" className="text-red-500">
-                  This field is required
-                </p>
-              )}
-            </label>
 
-            {/* Profession Name */}
-            <label className="form-control w-full">
-              <div className="label">
-                <span className="label-text font-semibold text-white">
-                  Profession Name
-                </span>
+              {/* Profession Name */}
+              <div>
+                <label className={labelClass}>Profession Name</label>
+                <input
+                  type="text"
+                  placeholder="Cardiologist"
+                  className={inputClass}
+                  {...register("role", { required: true })}
+                />
+                {errors.role?.type === "required" && (
+                  <p role="alert" className={errorClass}>
+                    This field is required
+                  </p>
+                )}
               </div>
-              <input
-                type="text"
-                placeholder="Profession Name"
-                className="input input-bordered w-full bg-white text-black rounded-xl"
-                {...register("role", { required: true })}
-              />
-              {errors.role?.type === "required" && (
-                <p role="alert" className="text-red-500">
-                  This field is required
-                </p>
-              )}
-            </label>
 
-            {/* Participant Count */}
-            <label className="form-control w-full">
-              <div className="label">
-                <span className="label-text font-semibold text-white">
-                  Participant Count
-                </span>
+              {/* Participant Count */}
+              <div>
+                <label className={labelClass}>Participant Count</label>
+                <input
+                  type="number"
+                  placeholder="0"
+                  className={inputClass}
+                  defaultValue={0}
+                  {...register("participant_count")}
+                />
               </div>
-              <input
-                type="number"
-                placeholder="Participant Count"
-                className="input input-bordered w-full bg-white text-black rounded-xl"
-                defaultValue={0}
-                {...register("participant_count")}
-              />
-            </label>
 
-            {/* Camp Image */}
-            <label className="form-control w-full">
-              <div className="label">
-                <span className="label-text font-semibold text-white">
-                  Camp Image URL
-                </span>
+              {/* Camp Image */}
+              <div>
+                <label className={labelClass}>Camp Image URL</label>
+                <input
+                  type="text"
+                  placeholder="https://..."
+                  className={inputClass}
+                  {...register("image", { required: true })}
+                />
+                {errors.image?.type === "required" && (
+                  <p role="alert" className={errorClass}>
+                    This field is required
+                  </p>
+                )}
               </div>
-              <input
-                type="text"
-                placeholder="Camp Image"
-                className="input input-bordered w-full bg-white text-black rounded-xl"
-                {...register("image", { required: true })}
-              />
-              {errors.image?.type === "required" && (
-                <p role="alert" className="text-red-500">
-                  This field is required
-                </p>
-              )}
-            </label>
 
-            {/* Camp Description */}
-            <label className="form-control w-full col-span-2">
-              <div className="label">
-                <span className="label-text font-semibold text-white">
-                  Camp Description
-                </span>
+              {/* Camp Description */}
+              <div className="md:col-span-2">
+                <label className={labelClass}>Camp Description</label>
+                <textarea
+                  className={`${inputClass} h-28 resize-none`}
+                  placeholder="Briefly describe the camp's purpose and services offered"
+                  {...register("description", { required: true })}
+                ></textarea>
+                {errors.description?.type === "required" && (
+                  <p role="alert" className={errorClass}>
+                    This field is required
+                  </p>
+                )}
               </div>
-              <textarea
-                className="textarea textarea-bordered h-24 bg-white text-black rounded-xl"
-                {...register("description", { required: true })}
-              ></textarea>
-              {errors.description?.type === "required" && (
-                <p role="alert" className="text-red-500">
-                  This field is required
-                </p>
-              )}
-            </label>
-          </div>
+            </div>
 
-          {/* Submit Button */}
-          <div className="flex justify-end p-2 md:p-4">
-            <UsePrimaryBtn isSubmit blackBorder type="submit">
-              Submit
-            </UsePrimaryBtn>
-          </div>
-        </form>
+            {/* Submit Button */}
+            <div className="flex justify-end pt-2">
+              <button
+                type="submit"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 bg-white border border-slate-600 hover:border-green-300 hover:text-green-700 hover:bg-green-50 transition-colors"
+              >
+                <PlusCircle className="w-4 h-4" />
+                Add Camp
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

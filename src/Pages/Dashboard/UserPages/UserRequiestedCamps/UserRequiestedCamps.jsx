@@ -4,9 +4,8 @@ import UseParticipant from "../../../../CustomHooks/UseParticipant";
 import Swal from "sweetalert2";
 import UseAxios from "../../../../CustomHooks/UseAxios";
 import { Link } from "react-router-dom";
-import UsePrimaryBtn from "../../../../CustomHooks/UsePrimaryBtn";
 import toast from "react-hot-toast";
-import { ClipboardX, CreditCard, Clock3, CheckCircle2 } from "lucide-react";
+import { ClipboardX, CreditCard, Clock3, CheckCircle2, X } from "lucide-react";
 
 const UserRequiestedCamps = () => {
   // context api
@@ -128,12 +127,13 @@ const UserRequiestedCamps = () => {
                     <td className="px-4 py-3">
                       {participant.paymentStatus === "pay" ? (
                         <Link to={`/dashboard/payment/${participant._id}`}>
-                          <UsePrimaryBtn>
-                            <span className="flex items-center gap-1.5">
-                              <CreditCard className="w-3.5 h-3.5" />
-                              Pay
-                            </span>
-                          </UsePrimaryBtn>
+                          <button
+                            type="button"
+                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-white bg-teal-600 hover:bg-teal-700 transition-colors"
+                          >
+                            <CreditCard className="w-3.5 h-3.5" />
+                            Pay
+                          </button>
                         </Link>
                       ) : (
                         <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700">
@@ -157,16 +157,23 @@ const UserRequiestedCamps = () => {
                     </td>
                     <td className="px-4 py-3 text-right">
                       {participant.paymentStatus === "pay" ? (
-                        <UsePrimaryBtn
+                        <button
+                          type="button"
                           onClick={() => handleDelete(participant._id)}
-                          isLogout
+                          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-red-600 bg-red-50 border border-red-100 hover:bg-red-100 transition-colors ml-auto"
                         >
+                          <X className="w-3.5 h-3.5" />
                           Cancel
-                        </UsePrimaryBtn>
+                        </button>
                       ) : (
-                        <UsePrimaryBtn disabled isLogout>
+                        <button
+                          type="button"
+                          disabled
+                          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 bg-slate-100 border border-slate-200 cursor-not-allowed ml-auto"
+                        >
+                          <X className="w-3.5 h-3.5" />
                           Cancel
-                        </UsePrimaryBtn>
+                        </button>
                       )}
                     </td>
                   </tr>
